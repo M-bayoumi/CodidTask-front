@@ -1,0 +1,11 @@
+<header class="container">
+  <div class="right">
+    <ul [hidden]="isUserLogged">
+      <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li><a routerLink="/register" routerLinkActive="active">Register</a></li>
+    </ul>
+    <ul [hidden]="!isUserLogged">
+      <li><a routerLink="/logout" (click)="LogOut()">LogOut</a></li>
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,169 @@
+<div class="container main py-5">
+  <h2>Register</h2>
+  <form [formGroup]="userRegisterForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">FirstName</label>
+      <input
+        type="text"
+        formControlName="firstName"
+        class="form-control"
+        id="firstName"
+        name="firstName"
+        [class.is-invalid]="firstName?.invalid && firstName?.touched"
+        [class.is-valid]="firstName?.valid && firstName?.touched"
+      />
+      <div [hidden]="firstName?.valid || firstName?.untouched">
+        <small *ngIf="firstName?.errors?.['required']">
+          * FirstName is required.
+        </small>
+        <small *ngIf="firstName?.errors?.['pattern']">
+          * FirstName must be 3 letters at least,
+          <b>{{firstName?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="lastName" class="form-label">LastName</label>
+      <input
+        type="text"
+        formControlName="lastName"
+        class="form-control"
+        id="lastName"
+        name="lastName"
+        [class.is-invalid]="lastName?.invalid && lastName?.touched"
+        [class.is-valid]="lastName?.valid && lastName?.touched"
+      />
+      <div [hidden]="lastName?.valid || lastName?.untouched">
+        <small *ngIf="lastName?.errors?.['required']">
+          * LastName is required.
+        </small>
+        <small *ngIf="lastName?.errors?.['pattern']">
+          * LastName must be 3 letters at least,
+          <b>{{lastName?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="userName" class="form-label">UserName</label>
+      <input
+        type="text"
+        formControlName="userName"
+        class="form-control"
+        id="userName"
+        name="userName"
+        [class.is-invalid]="userName?.invalid && userName?.touched"
+        [class.is-valid]="userName?.valid && userName?.touched"
+      />
+      <div [hidden]="userName?.valid || userName?.untouched">
+        <small *ngIf="userName?.errors?.['required']">
+          * UserName is required.
+        </small>
+        <small *ngIf="userName?.errors?.['pattern']">
+          * UserName must be 3 letters at least,
+          <b>{{userName?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+        <small *ngIf="userName?.errors?.['existUserName']">
+          * UserName is already taken.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+        name="email"
+        [class.is-invalid]="email?.invalid && email?.touched"
+        [class.is-valid]="email?.valid && email?.touched"
+      />
+      <div [hidden]="email?.valid || email?.untouched">
+        <small *ngIf="email?.errors?.['required']">
+          * Email is required.
+        </small>
+        <small *ngIf="email?.errors?.['pattern']">
+          * Please provide a valid email address,
+          <b>{{email?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+        <small *ngIf="email?.errors?.['existEmail']">
+          * Email is already taken.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="phoneNumber" class="form-label">Phone No.</label>
+      <input
+        type="text"
+        formControlName="phoneNumber"
+        class="form-control"
+        id="phoneNumber"
+        name="phoneNumber"
+        pattern="[0-9]{11}"
+        [class.is-invalid]="phoneNumber?.invalid && phoneNumber?.touched"
+        [class.is-valid]="phoneNumber?.valid && phoneNumber?.touched"
+      />
+      <div [hidden]="phoneNumber?.valid || phoneNumber?.untouched">
+        <small *ngIf="phoneNumber?.errors?.['required']">
+          * Phone Number is required.
+        </small>
+        <small *ngIf="phoneNumber?.errors?.['pattern']">
+          * Please provide a valid Phone Number,
+          <b>{{phoneNumber?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        id="password"
+        name="password"
+        [class.is-invalid]="password?.invalid && password?.touched"
+        [class.is-valid]="password?.valid && password?.touched"
+      />
+      <div [hidden]="password?.valid || password?.untouched">
+        <small *ngIf="password?.errors?.['required']">
+          * Password is required.
+        </small>
+        <small *ngIf="password?.errors?.['pattern']">
+          * Please provide a valid Password.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="confirmPassword" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        formControlName="confirmPassword"
+        class="form-control"
+        id="confirmPassword"
+        name="confirmPassword"
+        [class.is-invalid]="
+          confirmPassword?.invalid && confirmPassword?.touched
+        "
+        [class.is-valid]="confirmPassword?.valid && confirmPassword?.touched"
+      />
+      <div [hidden]="confirmPassword?.valid || confirmPassword?.untouched">
+        <small *ngIf="confirmPassword?.errors?.['required']">
+          * Confirm Password is required.
+        </small>
+        <small *ngIf="confirmPassword?.errors?.['mismatch']">
+          * Password doesn't match</small
+        >
+      </div>
+    </div>
+
+    <button [disabled]="userRegisterForm.invalid" type="submit" class="btn">
+      Submit
+    </button>
+  </form>
+</div>

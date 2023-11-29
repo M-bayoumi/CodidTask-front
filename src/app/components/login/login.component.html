@@ -1,0 +1,72 @@
+<div class="container main py-5">
+  <h2>Login</h2>
+  <form [formGroup]="userLoginForm" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        formControlName="email"
+        class="form-control"
+        id="email"
+        name="email"
+        [class.is-invalid]="email?.invalid && email?.touched"
+        [class.is-valid]="email?.valid && email?.touched"
+      />
+      <div [hidden]="email?.valid || email?.untouched">
+        <small *ngIf="email?.errors?.['required']">
+          * Email is required.
+        </small>
+        <small *ngIf="email?.errors?.['pattern']">
+          * Please provide a valid email address,
+          <b>{{email?.errors?.['pattern'].actualValue}}</b> is not valid.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        formControlName="password"
+        class="form-control"
+        id="password"
+        name="password"
+        [class.is-invalid]="password?.invalid && password?.touched"
+        [class.is-valid]="password?.valid && password?.touched"
+      />
+      <div [hidden]="password?.valid || password?.untouched">
+        <small *ngIf="password?.errors?.['required']">
+          * Password is required.
+        </small>
+        <small *ngIf="password?.errors?.['pattern']">
+          * Please provide a valid Password.
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <input
+        type="checkbox"
+        formControlName="rememberMe"
+        id="rememberMe"
+        name="rememberMe"
+        class="me-2"
+      />
+      <label for="rememberMe" class="form-label">Remember Me</label>
+    </div>
+
+    <div class="mb-3" *ngIf="userLoginForm?.errors?.['WrongEmailOrPassword']">
+      <small *ngIf="password?.errors?.['required']">
+        * - Wrong email address or password.
+      </small>
+    </div>
+
+    <button [disabled]="userLoginForm.invalid" type="submit" class="btn mb-3">
+      Submit
+    </button>
+    <div class="d-flex justify-content-between">
+      <div class="createAccount"><a routerLink="/register" routerLinkActive="active">Create Account</a></div>
+    </div>
+
+  </form>
+</div>
